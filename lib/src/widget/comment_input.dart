@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 //评论框
 class CommentInput extends StatefulWidget {
   const CommentInput({
+    required this.focusNode,
     this.text = '',
     this.onSend,
     super.key,
   });
+
+  final FocusNode focusNode;
 
   //键盘点击发送事件
   final Function(String)? onSend;
@@ -87,9 +90,9 @@ class _CommentInputState extends State<CommentInput> {
                           fontSize: 15,
                           color: Colors.white,
                         ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        border: InputBorder.none,
                       ),
                     ),
                   ),

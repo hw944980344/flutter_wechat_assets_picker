@@ -12,6 +12,7 @@ class DescInput extends StatefulWidget {
 
 class _DescInputState extends State<DescInput> {
   final _controller = TextEditingController();
+  final _focusNode = FocusNode();
   bool show = false;
 
   Future<void> _saveText() async {
@@ -43,7 +44,7 @@ class _DescInputState extends State<DescInput> {
 
   @override
   Widget build(BuildContext context) {
-    if (!show) {
+    if (!show || _focusNode.hasFocus) {
       return const SizedBox();
     }
     return Container(
@@ -70,6 +71,7 @@ class _DescInputState extends State<DescInput> {
               context,
               PopRoute(
                 child: CommentInput(
+                  focusNode: _focusNode,
                   text: _controller.text,
                   onSend: (val) {
                     _controller.text = val;
@@ -83,7 +85,6 @@ class _DescInputState extends State<DescInput> {
             );
           },
           readOnly: true,
-          autofocus: true,
           minLines: 1,
           maxLines: 10,
           textInputAction: TextInputAction.send,
