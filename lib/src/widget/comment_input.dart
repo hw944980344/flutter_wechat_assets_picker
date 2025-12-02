@@ -82,7 +82,7 @@ class _CommentInputState extends State<CommentInput> {
                           vertical: 5,
                           horizontal: 10,
                         ),
-                        hintText: '请输入描述',
+                        hintText: '请输入描述123',
                         hintStyle: TextStyle(
                           fontSize: 15,
                           color: Colors.white,
