@@ -31,6 +31,7 @@ dependencies:
   provider: ^6.0.5
   video_player: ^2.7.0
   visibility_detector: ^0.4.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_lints: any

@@ -8,6 +8,7 @@ import 'dart:io' as io show Platform;
 import 'package:flutter/material.dart' hide Path;
 import 'package:flutter/services.dart' show MethodCall;
 import 'package:photo_manager/photo_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wechat_picker_library/wechat_picker_library.dart';
 
 import '../constants/config.dart';
@@ -121,10 +122,23 @@ class AssetPickerState<Asset, Path,
     extends State<AssetPicker<Asset, Path, Delegate>>
     with TickerProviderStateMixin, WidgetsBindingObserver {
   Completer<PermissionState>? permissionStateLock;
+  bool showInput = false;
+
+  Future<void> _init() async {
+    final prefs = await SharedPreferences.getInstance();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        setState(() {
+          showInput = prefs.getBool('media_desc_show') ?? false;
+        });
+      }
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    _init();
     WidgetsBinding.instance.addObserver(this);
     AssetPicker.registerObserve(_onAssetsUpdated);
     widget.builder.initState(this);

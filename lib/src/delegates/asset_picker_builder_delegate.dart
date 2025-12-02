@@ -14,6 +14,7 @@ import 'package:flutter/services.dart' show MethodCall, SystemUiOverlayStyle;
 import 'package:photo_manager/photo_manager.dart';
 import 'package:photo_manager_image_provider/photo_manager_image_provider.dart';
 import 'package:provider/provider.dart' show Consumer, ReadContext, Selector;
+import 'package:wechat_assets_picker/src/widget/desc_input.dart';
 import 'package:wechat_picker_library/wechat_picker_library.dart';
 
 import '../constants/constants.dart';
@@ -2564,6 +2565,7 @@ class DefaultAssetPickerBuilderDelegate<T extends DefaultAssetPickerProvider>
   Widget bottomActionBar(BuildContext context) {
     final children = <Widget>[
       if (isPermissionLimited) accessLimitedBottomTip(context),
+      const DescInput(),
       if (hasBottomActions)
         Container(
           height: bottomActionBarHeight + context.bottomPadding,
