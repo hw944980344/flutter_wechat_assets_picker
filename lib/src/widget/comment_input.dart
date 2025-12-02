@@ -70,6 +70,7 @@ class _CommentInputState extends State<CommentInput> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: TextFormField(
+                      focusNode: widget.focusNode,
                       onEditingComplete: _submit,
                       controller: _controller,
                       cursorColor: Colors.white,
